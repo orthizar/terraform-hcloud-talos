@@ -441,12 +441,13 @@ variable "talos_image_id_x86" {
   type        = string
   default     = null
   description = <<EOF
-    Optional Hetzner Cloud image ID for x86_64 architecture.
+    Optional Hetzner Cloud image ID for x86_64 architecture (for example a custom Talos snapshot).
     If set, this ID is used directly and the module skips the "os=talos" image selector lookup.
+    Hint: list Talos snapshot IDs with `hcloud image list`.
   EOF
   validation {
     condition     = var.talos_image_id_x86 == null || can(regex("^[0-9]+$", var.talos_image_id_x86))
-    error_message = "talos_image_id_x86 must be a numeric image ID string (for example: \"122630\") or null."
+    error_message = "talos_image_id_x86 must be a numeric image ID string (for example: \"123456\") or null."
   }
 }
 
@@ -454,12 +455,41 @@ variable "talos_image_id_arm" {
   type        = string
   default     = null
   description = <<EOF
-    Optional Hetzner Cloud image ID for arm64 architecture.
+    Optional Hetzner Cloud image ID for arm64 architecture (for example a custom Talos snapshot).
     If set, this ID is used directly and the module skips the "os=talos" image selector lookup.
+    Hint: list Talos snapshot IDs with `hcloud image list`.
   EOF
   validation {
     condition     = var.talos_image_id_arm == null || can(regex("^[0-9]+$", var.talos_image_id_arm))
-    error_message = "talos_image_id_arm must be a numeric image ID string (for example: \"122629\") or null."
+    error_message = "talos_image_id_arm must be a numeric image ID string (for example: \"123456\") or null."
+  }
+}
+
+variable "talos_iso_id_x86" {
+  type        = string
+  default     = null
+  description = <<EOF
+    Optional Hetzner Cloud ISO ID for x86_64 architecture.
+    If set, the ISO is mounted via the server `iso` field.
+    Hint: list Talos ISO IDs with `hcloud iso list`.
+  EOF
+  validation {
+    condition     = var.talos_iso_id_x86 == null || can(regex("^[0-9]+$", var.talos_iso_id_x86))
+    error_message = "talos_iso_id_x86 must be a numeric ISO ID string (for example: \"122630\") or null."
+  }
+}
+
+variable "talos_iso_id_arm" {
+  type        = string
+  default     = null
+  description = <<EOF
+    Optional Hetzner Cloud ISO ID for arm64 architecture.
+    If set, the ISO is mounted via the server `iso` field.
+    Hint: list Talos ISO IDs with `hcloud iso list`.
+  EOF
+  validation {
+    condition     = var.talos_iso_id_arm == null || can(regex("^[0-9]+$", var.talos_iso_id_arm))
+    error_message = "talos_iso_id_arm must be a numeric ISO ID string (for example: \"122629\") or null."
   }
 }
 

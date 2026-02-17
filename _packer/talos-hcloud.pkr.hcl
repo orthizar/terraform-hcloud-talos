@@ -62,7 +62,7 @@ locals {
 # Source for the Talos ARM image
 source "hcloud" "talos-arm" {
   rescue       = "linux64"
-  image        = "debian-11"
+  image        = "debian-13"
   location     = "${var.server_location}"
   server_type  = "${var.server_type_arm}"
   ssh_username = "root"
@@ -80,7 +80,7 @@ source "hcloud" "talos-arm" {
 # Source for the Talos x86 image
 source "hcloud" "talos-x86" {
   rescue       = "linux64"
-  image        = "debian-11"
+  image        = "debian-13"
   location     = "${var.server_location}"
   server_type  = "${var.server_type_x86}"
   ssh_username = "root"
